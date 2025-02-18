@@ -7,7 +7,7 @@ const Editor = () => {
     return (<div className="h-full w-6/12 relative">
         <CodeMirror minHeight='100vh' value='Hello World' onChange={() => {}} theme={'dark'} extensions={[javascript({ jsx: true })]} 
             style={{
-                fontSize: "30px"
+                fontSize: "20px"
             }}
         />
     </div>)
