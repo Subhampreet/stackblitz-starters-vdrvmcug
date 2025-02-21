@@ -3,9 +3,13 @@
 import MarkdownPreview from '@uiw/react-markdown-preview';
 
 
-const Review = () => {
+const Review = ({
+    review,
+  }: {
+    review: string;
+  }) => {
     return (<div className="h-full w-6/12 relative">
-        <MarkdownPreview source={"Your review would be here"} style={{ fontSize: 20, height: "100vh" }} />
+        <MarkdownPreview source={review} style={{ fontSize: 20, height: "100vh" }} />
     </div>)
 }
 
