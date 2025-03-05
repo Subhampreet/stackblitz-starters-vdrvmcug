@@ -1,12 +1,30 @@
-import express from 'express'
+import express from "express";
+import cors from "cors";
 
-const app = express()
-const port = process.env.PORT || 3000;
+import generateReview from "./review.js";
 
-app.get("/", (req, res) => {
-    res.send('Hello World')
-})
+const app = express();
+const port = 3000;
 
-app.listen(port, "0.0.0.0", () => {
-    console.log(`Server is running at http://localhost:${port}`);
+app.use(express.json());
+app.use(cors());
+
+app.post("/api/v1/reviews", async (req, res) => {
+  const code = req.body.code;
+
+  try {
+    const review = await generateReview(code);
+
+    return res.send({
+      review,
+    });
+  } catch (err) {
+    return res.status(500).send({
+      message: "Something went wrong",
+    });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
 });
